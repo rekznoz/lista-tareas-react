@@ -81,7 +81,7 @@ function App() {
 
     // Guardar la tarea para poder editarla mas adelante
     const [tareaEditar, setTareaEditar] = useState({
-        id: 0,
+        id: "",
         titulo: "",
         descripcion: "",
         estado: "pendiente",
@@ -122,11 +122,22 @@ function App() {
         setTareaEditar(tarea)
     }
 
+    function cancelarEdicion() {
+        setTareaEditar({
+            id: "",
+            titulo: "",
+            descripcion: "",
+            estado: "pendiente",
+            priority: false
+        })
+    }
+
     return (
         <div className="m-5" >
             <Formulario
                 agregarTarea={agregarTarea}
                 editarTarea={editarTarea}
+                cancelarEdicion={cancelarEdicion}
                 tareaEditar={tareaEditar}
             />
             <Lista
