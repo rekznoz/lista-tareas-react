@@ -50,16 +50,25 @@ export default function Formulario(Entradas) {
         if (tareaEditar.id) {
             nuevaTarea.id = tareaEditar.id
             editarTarea(nuevaTarea)
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Tarea editada',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
         } else {
             agregarTarea(nuevaTarea)
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Tarea agregada',
+                showConfirmButton: false,
+                timer: 1500
+            })
+
         }
-        
-        Swal.fire({
-            icon: 'success',
-            title: 'Tarea agregada',
-            showConfirmButton: false,
-            timer: 1500
-        })
 
         console.log(tarea)
     }
