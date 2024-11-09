@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Formulario from "./componentes/Formulario.jsx";
 import Lista from "./componentes/Lista.jsx";
-import Swal from "sweetalert2";
 
 const initialStateTareas = [
     {
@@ -17,9 +16,64 @@ const initialStateTareas = [
         descripcion: "Descripcion 2",
         estado: "completada",
         priority: true
+    },
+    {
+        id: 3,
+        titulo: "Tarea 3",
+        descripcion: "Descripcion 3",
+        estado: "pendiente",
+        priority: false
+    },
+    {
+        id: 4,
+        titulo: "Tarea 4",
+        descripcion: "Descripcion 4",
+        estado: "pendiente",
+        priority: true
+    },
+    {
+        id: 5,
+        titulo: "Tarea 5",
+        descripcion: "Descripcion 5",
+        estado: "completada",
+        priority: false
+    },
+    {
+        id: 6,
+        titulo: "Tarea 6",
+        descripcion: "Descripcion 6",
+        estado: "pendiente",
+        priority: true
+    },
+    {
+        id: 7,
+        titulo: "Tarea 7",
+        descripcion: "Descripcion 7",
+        estado: "pendiente",
+        priority: false
+    },
+    {
+        id: 8,
+        titulo: "Tarea 8",
+        descripcion: "Descripcion 8",
+        estado: "pendiente",
+        priority: true
+    },
+    {
+        id: 9,
+        titulo: "Tarea 9",
+        descripcion: "Descripcion 9",
+        estado: "completada",
+        priority: false
+    },
+    {
+        id: 10,
+        titulo: "Tarea 10",
+        descripcion: "Descripcion 10",
+        estado: "pendiente",
+        priority: false
     }
 ]
-
 
 function App() {
 
