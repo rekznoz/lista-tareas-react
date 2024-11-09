@@ -10,7 +10,7 @@ const InitialValues = {
 
 export default function Formulario(Entradas) {
 
-    const { agregarTarea, tareaEditar, editarTarea } = Entradas
+    const { agregarTarea, tareaEditar, editarTarea, cancelarEdicion } = Entradas
 
     const [tarea, setTarea] = useState(InitialValues)
 
@@ -50,6 +50,7 @@ export default function Formulario(Entradas) {
         if (tareaEditar.id) {
             nuevaTarea.id = tareaEditar.id
             editarTarea(nuevaTarea)
+            eventoCancelarEdicion()
 
             Swal.fire({
                 icon: 'success',
@@ -81,6 +82,11 @@ export default function Formulario(Entradas) {
         setTarea(nuevaTarea)
     }
 
+    function eventoCancelarEdicion() {
+        setTarea(InitialValues)
+        cancelarEdicion()
+    }
+
     return (
         <div className="container">
             <h1 className="text-center" >Formulario</h1>
@@ -104,7 +110,8 @@ export default function Formulario(Entradas) {
                     <input type="checkbox" className="form-check-input" id="priority" name="priority" checked={tarea.priority} onChange={handleChange} />
                     <label className="form-check-label" htmlFor="priority">Prioridad</label>
                 </div>
-                <button type="submit" className="btn btn-primary">Guardar</button>
+                <button type="submit" className="btn btn-primary m-1">{tareaEditar.id ? 'Editar' : 'Guardar'}</button>
+                {tareaEditar.id && <button type="button" className="btn btn-danger m-1" onClick={eventoCancelarEdicion}>Cancelar</button>}
             </form>
         </div>
     )
