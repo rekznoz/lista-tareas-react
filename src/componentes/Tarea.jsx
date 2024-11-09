@@ -6,12 +6,11 @@ export default function Tarea(Entradas) {
     // Las completadas van abajo, las pendientes arriba
     const completadas = tareas.filter(tarea => tarea.estado === 'completada');
     const pendientes = tareas.filter(tarea => tarea.estado === 'pendiente');
-    let tareasOrdenadas = [...pendientes, ...completadas];
 
     // Ordenar las pendientes por prioridad
     const prioritarias = pendientes.filter(tarea => tarea.priority);
     const noPrioritarias = pendientes.filter(tarea => !tarea.priority);
-    tareasOrdenadas = [...prioritarias, ...noPrioritarias, ...completadas];
+    let tareasOrdenadas = [...prioritarias, ...noPrioritarias, ...completadas];
 
     return (
         tareasOrdenadas.map(tarea => (
