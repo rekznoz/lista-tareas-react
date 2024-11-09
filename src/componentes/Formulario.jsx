@@ -10,10 +10,17 @@ const InitialValues = {
 
 export default function Formulario(Entradas) {
 
-    const { agregarTarea } = Entradas
+    const { agregarTarea, tareaEditar, editarTarea } = Entradas
 
     const [tarea, setTarea] = useState(InitialValues)
 
+    // Actualizar el formlario para que se pueda editar una tarea
+    if (tareaEditar.id && tarea.id !== tareaEditar.id) {
+        setTarea(tareaEditar)
+        console.log(tareaEditar)
+    }
+
+    // Manejar el envio del formulario
     function handleSubmit(e) {
         e.preventDefault()
 
@@ -40,8 +47,13 @@ export default function Formulario(Entradas) {
             ...tarea
         }
 
-        agregarTarea(nuevaTarea)
-
+        if (tareaEditar.id) {
+            nuevaTarea.id = tareaEditar.id
+            editarTarea(nuevaTarea)
+        } else {
+            agregarTarea(nuevaTarea)
+        }
+        
         Swal.fire({
             icon: 'success',
             title: 'Tarea agregada',
@@ -52,6 +64,7 @@ export default function Formulario(Entradas) {
         console.log(tarea)
     }
 
+    // Manejar los cambios en los inputs
     function handleChange(e) {
         const { name, value, checked, type } = e.target
         const valor = type === 'checkbox' ? checked : value
