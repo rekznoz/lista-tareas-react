@@ -22,7 +22,11 @@ export default function Tarea(Entradas) {
                     {tarea.priority && <p>Prioritario!</p>}
                     <button className="btn btn-warning m-1" onClick={() => editarTarea(tarea.id)}>Editar</button>
                     <button className="btn btn-danger m-1" onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
-                    <button className="btn btn-success m-1" onClick={() => cambiarEstadoTarea(tarea.id)}>Actualizar</button>
+                    <button className={
+                        `btn m-1 ${tarea.estado === 'pendiente' ? 'btn-success' : 'btn-secondary'}`
+                    } onClick={() => cambiarEstadoTarea(tarea.id)}>{
+                        tarea.estado === 'pendiente' ? 'Completar' : 'Pendiente'
+                    }</button>
                 </div>
                 <span className={`badge ${tarea.estado === 'pendiente' ? 'bg-primary' : 'bg-success'} rounded-pill`}>{tarea.estado}</span>
             </li>
