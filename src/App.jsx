@@ -1,35 +1,61 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Formulario from "./componentes/Formulario.jsx";
+import Lista from "./componentes/Lista.jsx";
+
+const initialStateTareas = [
+    {
+        id: 1,
+        titulo: "Tarea 1",
+        descripcion: "Descripcion 1",
+        estado: "pendiente",
+        priority: false
+    },
+    {
+        id: 2,
+        titulo: "Tarea 2",
+        descripcion: "Descripcion 2",
+        estado: "completada",
+        priority: true
+    }
+]
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [tareas, setTareas] = useState(initialStateTareas)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    function agregarTarea(tarea) {
+        setTareas([...tareas, tarea])
+    }
+
+    function eliminarTarea(id) {
+        const nuevasTareas = tareas.filter((tarea) => tarea.id !== id)
+        setTareas(nuevasTareas)
+    }
+
+    function cambiarEstadoTarea(id) {
+        const nuevasTareas = tareas.map((tarea) => {
+            if (tarea.id === id) {
+                tarea.estado = tarea.estado === "pendiente" ? "completada" : "pendiente"
+            }
+            return tarea
+        })
+        setTareas(nuevasTareas)
+    }
+
+    function editarTarea(id) {
+        console.log("Editar tarea con id: ", id)
+    }
+
+    return (
+        <div className="m-5" >
+            <Formulario agregarTarea={agregarTarea} />
+            <Lista
+                tareas={tareas}
+                eliminarTarea={eliminarTarea}
+                cambiarEstadoTarea={cambiarEstadoTarea}
+                editarTarea={editarTarea}
+            />
+        </div>
+      )
 }
 
 export default App
