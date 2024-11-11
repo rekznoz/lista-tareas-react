@@ -1,6 +1,8 @@
 
 # 📝 Aplicación de Gestión de Tareas
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/26d62730-ebd4-4060-8441-2b6fbcc70291/deploy-status)](https://app.netlify.com/sites/rekz-tareas/deploys)
+
 Una sencilla aplicación web para gestionar tus tareas diarias. Permite agregar, editar, eliminar y actualizar el estado de las tareas, brindando una manera fácil de mantener tu lista de tareas organizada y priorizada.
 
 ## ✨ Funcionalidades
