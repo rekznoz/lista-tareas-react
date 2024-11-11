@@ -16,7 +16,7 @@ export default function Tarea(Entradas) {
 
     return (
         tareasOrdenadas.map(tarea => (
-            <li key={tarea.id} className={`list-group-item d-flex justify-content-between align-items-center ${tarea.estado === 'completada' ? 'bg-light' : ''}`}>
+            <li key={tarea.id} className={`list-group-item d-flex justify-content-between align-items-start ${tarea.estado === 'completada' ? 'bg-secondary-subtle' : ''}`}>
                 <div className="ms-2 me-auto">
                     <h1>{tarea.titulo}</h1>
                     <p>{tarea.descripcion}</p>
