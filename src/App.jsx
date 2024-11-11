@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Formulario from "./componentes/Formulario.jsx";
 import Lista from "./componentes/Lista.jsx";
 
@@ -77,7 +77,22 @@ const initialStateTareas = [
 
 function App() {
 
-    const [tareas, setTareas] = useState(initialStateTareas)
+    const [tareas, setTareas] = useState([])
+
+    // LocalStorage para cargar las tareas
+    useEffect(() => {
+        const tareas = JSON.parse(localStorage.getItem("tareas"))
+        if (tareas) {
+            setTareas(tareas)
+        } else {
+            setTareas(initialStateTareas)
+        }
+    }, [])
+
+    // LocalStorage para guardar las tareas
+    useEffect(() => {
+        localStorage.setItem("tareas", JSON.stringify(tareas))
+    }, [tareas])
 
     // Guardar la tarea para poder editarla mas adelante
     const [tareaEditar, setTareaEditar] = useState({
