@@ -10,6 +10,8 @@ export default function Tarea(Entradas) {
     // Ordenar las pendientes por prioridad
     const prioritarias = pendientes.filter(tarea => tarea.priority);
     const noPrioritarias = pendientes.filter(tarea => !tarea.priority);
+
+
     let tareasOrdenadas = [...prioritarias, ...noPrioritarias, ...completadas];
 
     return (
