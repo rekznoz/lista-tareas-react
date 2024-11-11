@@ -75,33 +75,32 @@ const initialStateTareas = [
     }
 ]
 
+const tareaVacia = {
+    id: "",
+    titulo: "",
+    descripcion: "",
+    estado: "pendiente",
+    priority: false
+}
+
 function App() {
-
-    const [tareas, setTareas] = useState([])
-
-    // LocalStorage para cargar las tareas
-    useEffect(() => {
-        const tareas = JSON.parse(localStorage.getItem("tareas"))
-        if (tareas) {
-            setTareas(tareas)
+    // Recuperar tareas del localStorage o usar el estado inicial
+    const [tareas, setTareas] = useState(() => {
+        const tareasGuardadas = localStorage.getItem("tareas")
+        if (tareasGuardadas) {
+            return JSON.parse(tareasGuardadas)
         } else {
-            setTareas(initialStateTareas)
+            return initialStateTareas
         }
-    }, [])
+    })
 
-    // LocalStorage para guardar las tareas
+    // Guardar la tarea para poder editarla más adelante
+    const [tareaEditar, setTareaEditar] = useState(tareaVacia)
+
+    // Efecto para actualizar localStorage cada vez que cambien las tareas
     useEffect(() => {
         localStorage.setItem("tareas", JSON.stringify(tareas))
     }, [tareas])
-
-    // Guardar la tarea para poder editarla mas adelante
-    const [tareaEditar, setTareaEditar] = useState({
-        id: "",
-        titulo: "",
-        descripcion: "",
-        estado: "pendiente",
-        priority: false
-    })
 
     function agregarTarea(tarea) {
         setTareas([...tareas, tarea])
@@ -138,17 +137,11 @@ function App() {
     }
 
     function cancelarEdicion() {
-        setTareaEditar({
-            id: "",
-            titulo: "",
-            descripcion: "",
-            estado: "pendiente",
-            priority: false
-        })
+        setTareaEditar(tareaVacia)
     }
 
     return (
-        <div className="m-5" >
+        <div className="m-5">
             <Formulario
                 agregarTarea={agregarTarea}
                 editarTarea={editarTarea}
@@ -162,7 +155,7 @@ function App() {
                 editarTarea={eventoEditarTarea}
             />
         </div>
-      )
+    )
 }
 
-export default App
+export default App;
